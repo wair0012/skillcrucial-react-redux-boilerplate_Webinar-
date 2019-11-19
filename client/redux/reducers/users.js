@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     case GET_DATA:
       return {
         ...state,
-        list: state.list.concat(action.list)
+        list: action.list // state.list.concat(action.list)
       }
     case REQUEST_STARTED:
       return {

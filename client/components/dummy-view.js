@@ -6,7 +6,6 @@ import Head from './head'
 import { getData } from '../redux/reducers/users'
 
 const Dummy = (props) => {
-  const [counter] = useState(4)
   const [pageIndex, setPageIndex] = useState(0)
   const { getData: getDataProps } = props
   useEffect(() => {
@@ -15,9 +14,8 @@ const Dummy = (props) => {
   return (
     <div>
       <Head title="Hello" />
-      <div> {props.isRequesting ? 'Your data is loading...' : ''} </div>
-      <div> Hello World {counter} {props.users.length}</div>
-      <div> Page {pageIndex}</div>
+      <div> {props.isRequesting ? 'Your data is loading' : ''} </div>
+      <div> Page {pageIndex} {props.users.length} </div>
       <table>
         <tr>
           <td>Name</td>
@@ -45,25 +43,25 @@ const Dummy = (props) => {
               <td>{user.phone}</td>
             </tr>
           ))
-         }
+        }
       </table>
       <button
         type="button"
         onClick={() => setPageIndex(Math.max(0, pageIndex - 1))}
       >
-      Previos
+        Previous
       </button>
       <button
         type="button"
         onClick={() => setPageIndex(pageIndex + 1)}
       >
-      Next
+        Next
       </button>
-      <img src={`/tracker/${counter}.gif`} alt="tracker" />
+      <img src={`/tracker/${pageIndex}.gif`} alt="tracker" />
     </div>
   )
 }
-// <div> {JSON.stringify(props.users)} </div>
+
 Dummy.propTypes = {}
 
 const mapStateToProps = (state) => ({
@@ -71,6 +69,7 @@ const mapStateToProps = (state) => ({
   isRequesting: state.users.isRequesting
 })
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ getData }, dispatch)
-
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  getData
+}, dispatch)
 export default connect(mapStateToProps, mapDispatchToProps)(Dummy)
