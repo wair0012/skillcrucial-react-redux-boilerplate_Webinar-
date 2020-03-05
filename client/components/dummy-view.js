@@ -1,11 +1,27 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // für den Routing in React
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import Head from './head'
 import { getData } from '../redux/reducers/users'
 
-const Dummy = (props) => {
+
+const Dummy = () => {
+  const [counter] = useState(0)
+  return (
+    <div>
+      <Head title="Hello" />
+      <div> Hello World Dummy{counter} </div>
+      <Link to="/dashboard">Go Dashboard</Link>
+      <br />
+      <a href="/dashboard"> Go to Googlle</a>
+    </div>
+  )
+}
+// Webinars
+/* const Dummy = (props) => {
   const [pageIndex, setPageIndex] = useState(0)
   // const array = useState(0)  - ist das gleiche wie oben
   // const pageIndex = array[0]
@@ -115,7 +131,7 @@ const Dummy = (props) => {
       <img src={`/tracker/${pageIndex}.gif`} alt="tracker" />
     </div>
   )
-}
+} */
 
 Dummy.propTypes = {}
 
